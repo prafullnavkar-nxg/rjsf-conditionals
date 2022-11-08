@@ -100,6 +100,9 @@ test('onChange called with corrected schema', () => {
 });
 
 test('chain of changes processed', async () => {
+
+  /* eslint-disable jest/valid-expect */
+
   let ResForm = applyRules(schema, {}, RULES, Engine)(Form);
   const onChangeSpy = sinon.spy(() => {});
   const { container } = render(
