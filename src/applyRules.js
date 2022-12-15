@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toError } from './utils';
+import { toError, deepEquals } from './utils';
 import rulesRunner from './rulesRunner';
 
 import { DEFAULT_ACTIONS } from './actions';
 import validateAction from './actions/validateAction';
 import env from './env';
-
-const { utils } = require('@rjsf/core');
-const { deepEquals } = utils;
 
 /**
  * Intended to be used internally through applyRules(...)

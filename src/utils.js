@@ -1,5 +1,23 @@
 import { extractRefSchema } from "json-rules-engine-simplified/lib/utils";
 import env from "./env";
+import isEqualWith from "lodash/isEqualWith";
+
+/** Cloned from @rjsf/utils v5 to make it work in older rjsf versions
+ *
+ * @param a - The first element to compare
+ * @param b - The second element to compare
+ * @returns - True if the `a` and `b` are deeply equal, false otherwise
+ */
+export const deepEquals = (a, b) => {
+  return isEqualWith(a, b, (obj, other) => {
+    if (typeof obj === "function" && typeof other === "function") {
+      // Assume all functions are equivalent
+      // see https://github.com/rjsf-team/react-jsonschema-form/issues/255
+      return true;
+    }
+    return undefined; // fallback to default isEquals behavior
+  });
+};
 
 export const toArray = (field) => {
   if (Array.isArray(field)) {
