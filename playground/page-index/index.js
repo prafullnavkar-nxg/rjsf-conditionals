@@ -1,9 +1,10 @@
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import React from "react";
 import form from "./form";
 import applyRules from "../../src/applyRules";
 import Form from "@rjsf/core";
 import SchemaFormConfigPreview from "../js/SchemaFormConfigPreview";
+import validator from "@rjsf/validator-ajv8";
 
 let { schema, uiSchema, rules, rulesEngine, extraActions, formData } = form;
 
@@ -38,6 +39,7 @@ function App() {
             onSubmit={handleSubmit}
             onChange={handleChange}
             onError={handleError}
+            validator={validator}
             showErrorList={true}
           />
         </div>
@@ -56,4 +58,6 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+// ReactDOM.render(<App />, document.getElementById("app"));
+const root = ReactDOM.createRoot(document.getElementById("app"));
+root.render(<App />);
